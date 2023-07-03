@@ -29,14 +29,13 @@ class DataTransformation:
         try:
             
             # Define which columns should be ordinal-encoded and which should be scaled
-            categorical_cols = ['make','fuel','gear','offerType']
-            numerical_cols = ['mileage', 'hp','year']
+            categorical_cols = ['cut', 'color','clarity']
+            numerical_cols = ['carat', 'depth','table', 'x', 'y', 'z']
             
             # Define the custom ranking for each ordinal variable
-            make_categories = ['BMW','Volkswagen','SEAT','Renault','Peugeot','Toyota','Opel','Mazda','Ford','Mercedes-Benz','Chevrolet','Audi','Fiat','Kia','Dacia','MINI','Hyundai','Skoda','Citroen','Infiniti','Suzuki','SsangYong','smart','Cupra','Volvo','Jaguar','Porsche','Nissan','Honda','Mitsubishi','Lexus','Jeep','Maserati','Bentley','Land','Alfa','Subaru','Dodge','Microcar','Lamborghini','Lada','Tesla','Chrysler','McLaren','Aston','Rolls-Royce','Lancia','Abarth','DS','Daihatsu','Ligier','Ferrari','Aixam','Zhidou','Morgan','Maybach','RAM','Alpina','Polestar','Brilliance','Piaggio','FISKER','Others','Cadillac','Iveco','Isuzu','Corvette','Baic','DFSK','Estrima','Alpine']
-            fuel_categories = ['Diesel','Gasoline','Electric/Gasoline','-/- (Fuel)','Electric','Electric/Diesel','CNG','LPG','Others','Hydrogen','Ethanol']
-            gear_categories = ['Manual','Automatic','Semi-automatic']
-            offerType_categories = ['Used','Demonstration',"Employee's car",'Pre-registered','New']
+            cut_categories = ['Fair', 'Good', 'Very Good','Premium','Ideal']
+            color_categories = ['D', 'E', 'F', 'G', 'H', 'I', 'J']
+            clarity_categories = ['I1','SI2','SI1','VS2','VS1','VVS2','VVS1','IF']
 
             # Numerical Pipeline
             num_pipeline = Pipeline(
@@ -50,7 +49,7 @@ class DataTransformation:
             cat_pipeline = Pipeline(
                 steps=[
                 ('imputer',SimpleImputer(strategy='most_frequent')),
-                ('ordinal_encoder',OrdinalEncoder(categories=[make_categories,fuel_categories,gear_categories, offerType_categories])),
+                ('ordinal_encoder',OrdinalEncoder(categories=[cut_categories,color_categories,clarity_categories])),
                 ('scaler',StandardScaler())
                 ]
             )
