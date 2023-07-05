@@ -1,11 +1,14 @@
-pandas
 numpy
-seaborn
+pandas
 matplotlib
+seaborn
 scikit-learn
+ipykernel
 catboost
 xgboost
-Flask
 dill
+flask
+flask_cors
+lime
 
-#-e .
+-e .
